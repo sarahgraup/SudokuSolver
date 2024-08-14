@@ -48,7 +48,7 @@ app.get("/puzzles/:difficulty/:filename", async (req, res) => {
 app.get("/solve/:difficulty/:filename", async (req, res) => {
   const { difficulty, filename } = req.params;
   const file = path.join(PUZZLES_DIR, difficulty, filename);
-  // const file = path.join(__dirname, 'puzzles', `${difficulty}.txt`);
+  // const file = path.join(__dirname, 'puzzles', `${difficulty}.txt`);=
 
   try {
     const sudoku = await Sudoku.getSudoku(file);
