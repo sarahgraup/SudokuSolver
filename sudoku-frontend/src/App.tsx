@@ -2,10 +2,10 @@ import React, { useState, useEffect, useCallback } from "react";
 import SudokuBoard from "./SudokuBoard/SudokuBoard";
 import ControlPanel from "./Controls/ControlPanel";
 import DifficultySelector from "./Controls/DifficultySelector";
-import SolverStepsAnimation from "./SolverStepsAnimation";
+import SolverStepsAnimation from "./utils/SolverStepsAnimation";
 import SudokuApi from "./Api/SudokuApi";
 import { CSolverStatus, paragraph } from "utils/constants";
-import { TSolverSteps, IPuzzleSelection } from "utils/Interfaces";
+import { TSolverSteps, IPuzzleSelection, TSolverAction, IPuzzleDifficulty,TDifficulty } from "utils/Interfaces";
 
 import "./App.css";
 
@@ -28,14 +28,14 @@ import "./App.css";
 function App() {
   const [board, setBoard] = useState<number[][]|[]>([]);
   const [solverStatus, setSolverStatus] = useState<string>(CSolverStatus.stop);
-  const [highlightedCell, setHighlightedCell] = useState<object | null>(null);
+  const [highlightedCell, setHighlightedCell] = useState<TSolverAction | null>(null);
   const [currentStep, setCurrentStep] = useState<number | null>(null);
   const [solverSteps, setSolverSteps] = useState<TSolverSteps[]|[]>([]);
   const [selectedPuzzle, setSelectedPuzzle] = useState<IPuzzleSelection>({
-    difficulty: "",
+    difficulty:undefined,
     filename: "",
   });
-  const [puzzles, setPuzzles] = useState({ easy: [], medium: [], hard: [] });
+  const [puzzles, setPuzzles] = useState<IPuzzleDifficulty>({ easy: [], medium: [], hard: [] });
 
 
   /**gets puzzle text file from api */
@@ -87,7 +87,7 @@ function App() {
    * after change of currentstep, solversteps, or solverstatus
    * */
   useEffect(() => {
-    let timer;
+    let timer: number | NodeJS.Timeout | undefined;
 
     if (
       solverStatus === CSolverStatus.run &&
@@ -146,13 +146,14 @@ function App() {
   useEffect(() => {
     const fetchPuzzles = async () => {
       try {
-        const resp = await SudokuApi.getPuzzles("/puzzles");
+        const resp = await SudokuApi.getPuzzles();
         setPuzzles(resp.puzzles);
 
         //automatically load first puzzle up
         if (resp.puzzles && Object.keys(resp.puzzles).length > 0) {
-          const difficulty = Object.keys(resp.puzzles)[0];
+          const difficulty = Object.keys(resp.puzzles)[0] as TDifficulty;
           const filename = resp.puzzles[difficulty][0];
+          
           loadPuzzle({ difficulty, filename });
         }
       } catch (err) {
@@ -179,7 +180,6 @@ function App() {
         </p>
       </header>
       <ControlPanel
-        className="control-panel"
         onStart={() => controlSolver("start")}
         onPause={() => controlSolver("pause")}
         onResume={() => controlSolver("resume")}
@@ -195,7 +195,6 @@ function App() {
         />
       </div>
       <DifficultySelector
-        className="difficulty-selector"
         onSelectPuzzle={handleSelectPuzzle}
         puzzles={puzzles}
       />
