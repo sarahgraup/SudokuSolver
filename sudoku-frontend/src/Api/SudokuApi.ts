@@ -18,7 +18,7 @@ class SudokuApi {
     try {
       return (await axios({ url, method, data, params })).data;
     } catch (err) {
-      let message = err.response.data.error.message;
+      const message = err.response.data.error.message;
       throw Array.isArray(message) ? message : [message];
     }
   }
