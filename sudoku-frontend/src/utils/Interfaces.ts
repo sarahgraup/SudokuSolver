@@ -21,4 +21,4 @@ export interface IPuzzleDifficulty {
   hard: string[];
 }
 
-export type TDifficulty = "easy" | "medium" | "hard";
+export type TDifficulty = 'easy' | 'medium' | 'hard';

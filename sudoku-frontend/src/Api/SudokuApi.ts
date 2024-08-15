@@ -1,24 +1,28 @@
-import axios from "axios";
+import axios from 'axios';
 
-const BASE_URL = process.env.REACT_APP_BASE_URL || "http://localhost:3001";
+
+const BASE_URL = process.env.REACT_APP_BASE_URL || 'http://localhost:3001';
 
 /** API Class.
  */
 export interface IPuzzle {
   difficulty: string;
   filename: string;
-  
+
 }
 
 class SudokuApi {
-  static async request(endpoint, data = {}, method = "get") {
+  static async request(endpoint, data = {}, method = 'get') {
     const url = `${BASE_URL}/${endpoint}`;
-    const params = method === "get" ? data : {};
+    const params = method === 'get' ? data : {};
 
     try {
-      return (await axios({ url, method, data, params })).data;
-    } catch (err) {
-      const message = err.response.data.error.message;
+      return (await axios({
+        url, method, data, params,
+      })).data;
+    }
+    catch (err) {
+      const { message } = err.response.data.error;
       throw Array.isArray(message) ? message : [message];
     }
   }
@@ -51,7 +55,7 @@ class SudokuApi {
    *       { easy:[ filename1, 2, ...], medium:[...], hard:[...] }
    */
   static async getPuzzles() {
-    const res = await this.request("puzzles");
+    const res = await this.request('puzzles');
     return res;
   }
 }

@@ -1,6 +1,8 @@
-import { FormControl, Select, MenuItem, Box, SelectChangeEvent } from "@mui/material";
-import { ReactEventHandler } from "react";
-import { IPuzzleSelection, IPuzzleDifficulty, TDifficulty } from "utils/Interfaces";
+import React from 'react';
+import {
+  FormControl, Select, MenuItem, Box, SelectChangeEvent,
+} from '@mui/material';
+import { IPuzzleSelection, IPuzzleDifficulty, TDifficulty } from 'utils/Interfaces';
 /** Component for Difficulty Selector
  *  Renders selection of difficulty levels and specified puzzles
  *
@@ -24,12 +26,12 @@ interface ISelectionProps {
 }
 
 function DifficultySelector({ onSelectPuzzle, puzzles }: ISelectionProps) {
-  //seperate handleChange
+  // seperate handleChange
   const handleChange = (difficulty: TDifficulty) => (evt: SelectChangeEvent<string>) => {
     onSelectPuzzle({ difficulty, filename: evt.target.value });
   };
 
-  //custom renderValue function
+  // custom renderValue function
   const renderDifficultyValue = (difficulty:TDifficulty) => (value:string | undefined) => {
     if (value && value.length === 0) {
       return difficulty.toUpperCase();
@@ -38,26 +40,26 @@ function DifficultySelector({ onSelectPuzzle, puzzles }: ISelectionProps) {
   };
 
   return (
-    <Box sx={{ minWidth: 200, display: "flex", gap: 2 }}>
-      {(["easy", "medium", "hard"] as TDifficulty[]).map((difficulty) => (
+    <Box sx={{ minWidth: 200, display: 'flex', gap: 2 }}>
+      {(['easy', 'medium', 'hard'] as TDifficulty[]).map((difficulty) => (
         <FormControl key={difficulty} fullWidth>
           <Select
-            className="selector"
+            className='selector'
             displayEmpty
-            value=""
-            variant="outlined"
+            value=''
+            variant='outlined'
             onChange={handleChange(difficulty)}
             renderValue={renderDifficultyValue(difficulty)}
             inputProps={{
-              "aria-label": `${difficulty} puzzle selection`,
+              'aria-label': `${difficulty} puzzle selection`,
               id: `${difficulty}-selector`,
             }}
           >
-            <MenuItem disabled value="">
+            <MenuItem disabled value=''>
               <em>{difficulty.toUpperCase()}</em>
             </MenuItem>
-            {puzzles[difficulty]?.map((puzzle, index) => (
-              <MenuItem key={index} value={puzzle}>
+            {puzzles[difficulty]?.map((puzzle) => (
+              <MenuItem key={puzzle} value={puzzle}>
                 {puzzle.slice(0, -4)}
               </MenuItem>
             ))}

@@ -1,5 +1,5 @@
-import React from "react";
-import { Box } from "@mui/material";
+import React from 'react';
+import { Box } from '@mui/material';
 /** Component for SudokuCell
  *  Renders a cell for sudoku grid
  *
@@ -24,15 +24,15 @@ function SudokuCell({ value, isHighlighted, highlightColor }: ISudokuCellProps) 
   return (
     <Box
       sx={{
-        height: "100%",
-        width: "100%",
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-        backgroundColor: isHighlighted ? highlightColor : "transparent",
+        height: '100%',
+        width: '100%',
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: isHighlighted ? highlightColor : 'transparent',
       }}
     >
-      {value !== null ? value : ""}
+      {value !== 0 ? value : ''}
     </Box>
   );
 }
