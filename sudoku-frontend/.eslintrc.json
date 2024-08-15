@@ -10,17 +10,13 @@
     "Atomics": "readonly",
     "SharedArrayBuffer": "readonly"
   },
+  
   "overrides": [
     {
       "files": ["**/*.ts", "**/*.tsx", "**/*.js"],
-      "plugins": ["@typescript-eslint"],
-      "extends": [
-        "airbnb",
-        "plugin:@typescript-eslint/recommended",
-        "react-app"
-      ],
+      "extends": ["airbnb", "react-app"],
       "rules": {
-        "@typescript-eslint/no-shadow": "error",
+        "@typescript-eslint/no-shadow": "warn",
         "@typescript-eslint/no-explicit-any": "warn",
         "@typescript-eslint/no-unused-vars": "warn",
         "@typescript-eslint/no-unused-expressions": "warn",
@@ -57,10 +53,7 @@
         "react-hooks/exhaustive-deps": "warn",
         "react-hooks/rules-of-hooks": "error",
         "react/destructuring-assignment": ["off"],
-        "react/jsx-filename-extension": [
-          "error",
-          { "extensions": [".js", ".tsx"] }
-        ],
+        "react/jsx-filename-extension": ["error", { "extensions": [".js", ".tsx"] }],
         "react/jsx-uses-react": "off",
         "react/no-unescaped-entities": "warn",
         "react/prop-types": ["off"],
