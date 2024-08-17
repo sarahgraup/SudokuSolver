@@ -141,6 +141,7 @@ const useSudokuSolver = () => {
     currentStep,
     solverSteps,
     puzzles,
+    selectedPuzzle,
     setPuzzles,
     loadPuzzle,
     controlSolver,

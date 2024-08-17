@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   FormControl, Select, MenuItem, Box, SelectChangeEvent,
+  InputLabel,
 } from '@mui/material';
 import { IPuzzleSelection, IPuzzleDifficulty, TDifficulty } from 'utils/Interfaces';
 /** Component for Difficulty Selector
@@ -26,34 +27,35 @@ interface ISelectionProps {
 }
 
 function DifficultySelector({ onSelectPuzzle, puzzles }: ISelectionProps) {
-  // seperate handleChange
+  const [selectedPuzzleVal, setSelectedPuzzleVal] = useState<string>('');
+  const [activeDifficulty, setActiveDifficulty] = useState<TDifficulty | null>(null);
+
   const handleChange = (difficulty: TDifficulty) => (evt: SelectChangeEvent<string>) => {
+    const newFilename = evt.target.value;
+    setActiveDifficulty(difficulty);
+    setSelectedPuzzleVal(newFilename);
     onSelectPuzzle({ difficulty, filename: evt.target.value });
   };
 
-  // custom renderValue function
   const renderDifficultyValue = (difficulty:TDifficulty) => (value:string | undefined) => {
-    if (value && value.length === 0) {
-      return difficulty.toUpperCase();
+    if (activeDifficulty === difficulty && typeof value === 'string' && value) {
+      return value.slice(0, -4);
     }
-    return value;
+    return difficulty.toUpperCase();
   };
 
   return (
     <Box sx={{ minWidth: 200, display: 'flex', gap: 2 }}>
       {(['easy', 'medium', 'hard'] as TDifficulty[]).map((difficulty) => (
-        <FormControl key={difficulty} fullWidth>
+        <FormControl variant='outlined' key={difficulty} fullWidth>
+          <InputLabel id={`${difficulty}-label`}>{difficulty.toUpperCase()}</InputLabel>
           <Select
-            className='selector'
-            displayEmpty
-            value=''
+            labelId={`${difficulty}-label`}
+            value={activeDifficulty === difficulty ? selectedPuzzleVal : ''}
             variant='outlined'
             onChange={handleChange(difficulty)}
             renderValue={renderDifficultyValue(difficulty)}
-            inputProps={{
-              'aria-label': `${difficulty} puzzle selection`,
-              id: `${difficulty}-selector`,
-            }}
+            label={difficulty.toUpperCase()}
           >
             <MenuItem disabled value=''>
               <em>{difficulty.toUpperCase()}</em>
@@ -71,3 +73,4 @@ function DifficultySelector({ onSelectPuzzle, puzzles }: ISelectionProps) {
 }
 
 export default DifficultySelector;
+

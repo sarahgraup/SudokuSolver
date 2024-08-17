@@ -1,5 +1,5 @@
 import React from 'react';
-import { Grid, Typography, Divider } from '@mui/material';
+import { Grid, Typography} from '@mui/material';
 
 
 function Header() {
@@ -7,14 +7,11 @@ function Header() {
     <Grid
       item
       sx={{
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-        width: "100%",
-        marginBottom: "1em",
+        display: 'flex',
+        width: '100%',
       }}
     >
-      <Typography variant="h1" textAlign="center">
+      <Typography variant='h1' textAlign='center'>
         Sudoku Solver
       </Typography>
     </Grid>

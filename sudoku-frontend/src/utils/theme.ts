@@ -1,4 +1,4 @@
-import { createTheme } from '@mui/material/styles';
+import { createTheme, Theme } from '@mui/material/styles';
 import { red } from '@mui/material/colors';
 
 
@@ -26,8 +26,9 @@ declare module '@mui/material/styles' {
     };
   }
 }
-// Define the custom theme
+
 const theme = createTheme({
+  spacing: (factor: number) => `${factor * 8}px`,
   palette: {
     primary: {
       main: '#121213',
@@ -48,10 +49,20 @@ const theme = createTheme({
       fontSize: '3rem',
       fontWeight: 200,
       letterSpacing: '0.1em',
-      // lineHeight: '5rem',
+      '@media (max-width: 600px)': {
+        fontSize: '2em',
+        lineHeight: '0.2em',
+      },
     },
     body1: {
+      textAlign: 'center',
+      fontSize: '1em',
       letterSpacing: '0.1em',
+      lineHeight: '2em',
+      '@media (max-width: 600px)': {
+        padding: '0.5em',
+        lineHeight: '1.5em',
+      },
     },
   },
   components: {
@@ -86,33 +97,44 @@ const theme = createTheme({
         },
       },
     },
+    MuiGrid: {
+      styleOverrides: {
+        root: {
+          margin: 0, 
+          padding: 0, 
+          justifyContent: 'center',
+          paddingTop: '0',
+          paddingLeft: '0',
+          width: '100%',
+        },
+      },
+    },
     MuiButton: {
       styleOverrides: {
         root: {
-          // You can define global button styles here
         },
       },
     },
     MuiCssBaseline: {
       styleOverrides: {
         body: {
-          // display: 'flex',
-          // flexDirection: 'column',
-          // alignItems: 'center',
-          // gap: '20px',
-          // padding: '1em',
-          // minHeight: '100vh',
-          // overflow: 'hidden',
+          alignItems: 'center',
+          justifyContent: 'center',
+          width: '100%',
+          margin: '0',
           fontFamily: "'Montserrat', sans-serif",
         },
         '@media (max-width: 600px)': {
-          body: {
+          body1: {
             padding: '0.5em',
             fontSize: '0.65em',
+            lineHeight: '0.2em',
           },
-          '.App-header h1': {
+          h1: {
             fontSize: '1.5em',
+            lineHeight: '0.2em',
           },
+
           '.App-header p': {
             fontSize: '0.7em',
           },
@@ -139,7 +161,6 @@ const theme = createTheme({
         alignItems: 'center',
       },
       highlighted: {
-        // Base highlighted style
       },
       conflict: {
         backgroundColor: 'red',

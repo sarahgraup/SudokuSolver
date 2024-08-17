@@ -26,7 +26,7 @@ function ControlPanel({
   onStart, onPause, onResume, onStepForward, onStepBackward,
 }: IPanelProps) {
   return (
-    <Grid justifyContent='center' gap='10px' flex='row' alignContent='space-between' sx={{ display: 'flex' }}>
+    <Grid spacing={0} justifyContent='center' gap='10px' flex='row' alignContent='space-between' sx={{ display: 'flex', padding: 0 }}>
       <Button sx={{ padding: '6px 12px', fontSize: '0.75rem' }} variant='outlined' onClick={onStart}>Start</Button>
       <Button sx={{ padding: '6px 12px', fontSize: '0.75rem' }} variant='outlined' onClick={onPause}>Pause</Button>
       <Button sx={{ padding: '6px 12px', fontSize: '0.75rem' }} variant='outlined' onClick={onResume}>Resume</Button>

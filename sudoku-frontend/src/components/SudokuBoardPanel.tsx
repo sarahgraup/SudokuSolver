@@ -12,13 +12,15 @@ function SudokuBoardPanel() {
   } = useSudokuContext();
 
   return (
-    <Grid
-      item
-      xs={6}
-      md={12}
-    >
-      <Grid container spacing={2}>
-        <Grid item xs={12} spacing={2} />
+    <Grid container spacing={4} justifyContent='center' width='100%'>
+      <Grid
+        item
+        xs={12}
+        sx={{
+          margin: 0,
+          padding: '0 !important',
+        }}
+      >
         <ControlPanel
           onStart={() => controlSolver('start')}
           onPause={() => controlSolver('pause')}
@@ -26,17 +28,18 @@ function SudokuBoardPanel() {
           onStepForward={() => handleStepChange('forward')}
           onStepBackward={() => handleStepChange('backward')}
         />
-        <Grid
-          container
-          direction='column'
-          justifyContent='center'
-          alignItems='center'
-          flexGrow='1'
-          gap='20px'
-        >
-          <SudokuBoard board={board} highlightedCell={highlightedCell} />
-          <SolverStepsAnimation currentStep={currentStep} solverSteps={solverSteps} />
-        </Grid>
+      </Grid>
+
+      <Grid item xs={12} />
+      <Grid
+        container
+        direction='column'
+        justifyContent='flex-start'
+        alignItems='center'
+        flexGrow='1'
+      >
+        <SudokuBoard board={board} highlightedCell={highlightedCell} />
+        <SolverStepsAnimation currentStep={currentStep} solverSteps={solverSteps} />
       </Grid>
     </Grid>
   );

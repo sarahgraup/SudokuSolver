@@ -32,15 +32,21 @@ interface IBoardProps {
 
 function SudokuBoard({ board, highlightedCell }: IBoardProps) {
   return (
-    <Grid container spacing={0} sx={{ maxWidth: 450, margin: 0 }}>
+    <Grid
+      container
+      spacing={0}
+      sx={{ width: { xs: '90vw', md: '40vw' }, margin: 0 }}
+    >
       {board.map((row, rowIndex) => row.map((cell, cellIndex) => (
         <Grid
           item
+          xs={12}
+          sm={4}
+          md={1.33}
           key={`${rowIndex}-${cellIndex}`}
           sx={{
             border: '1px solid #ddd',
-            width: '50px',
-            height: '50px',
+            aspectRatio: '1/1',
             display: 'flex',
             justifyContent: 'center',
             alignItems: 'center',

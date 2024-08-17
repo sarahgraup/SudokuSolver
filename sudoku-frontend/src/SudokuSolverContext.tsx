@@ -15,6 +15,7 @@ interface SudokuContextType {
   currentStep: number | null;
   solverSteps: TSolverSteps[];
   puzzles: IPuzzleDifficulty;
+  selectedPuzzle: IPuzzleSelection;
   loadPuzzle: (selection: IPuzzleSelection) => Promise<void>;
   controlSolver: (action: string) => Promise<void>;
   handleStepChange: (direction: string) => void;
