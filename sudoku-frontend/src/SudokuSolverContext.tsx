@@ -3,21 +3,25 @@ import React, {
 } from 'react';
 import useSudokuSolver from 'hooks/useSudokuSolver';
 import {
-  TSolverSteps, IPuzzleSelection, TSolverAction, IPuzzleDifficulty,
+  IPuzzleSelection,
+  TSolverAction,
+  IPuzzleDifficulty,
+  TDifficulty,
 } from 'utils/Interfaces';
-import SudokuApi from 'Api/SudokuApi';
 
 
 interface SudokuContextType {
-  board: number[][];
+  board: number[][] | [];
   solverStatus: string;
   highlightedCell: TSolverAction | null;
   currentStep: number | null;
-  solverSteps: TSolverSteps[];
-  puzzles: IPuzzleDifficulty;
+  fetchedSolverSteps: TSolverAction[] | undefined;
+  puzzles: IPuzzleDifficulty | undefined;
+  puzzlesIsLoading: boolean;
+  puzzlesError: Error | null;
   selectedPuzzle: IPuzzleSelection;
-  loadPuzzle: (selection: IPuzzleSelection) => Promise<void>;
-  controlSolver: (action: string) => Promise<void>;
+  loadPuzzle: (selection: IPuzzleSelection) => void;
+  controlSolver: (action: string) => void;
   handleStepChange: (direction: string) => void;
 }
 
@@ -31,23 +35,12 @@ function SudokuProvider({ children }: SudokuProviderProps) {
   const sudokuState = useSudokuSolver();
 
   useEffect(() => {
-    const fetchPuzzles = async () => {
-      try {
-        const resp = await SudokuApi.getPuzzles();
-        sudokuState.setPuzzles(resp.puzzles);
-
-        if (resp.puzzles && Object.keys(resp.puzzles).length > 0) {
-          const difficulty = Object.keys(resp.puzzles)[0] as keyof IPuzzleDifficulty;
-          const filename = resp.puzzles[difficulty][0];
-          sudokuState.loadPuzzle({ difficulty, filename });
-        }
-      }
-      catch (err) {
-        console.error('Failed to fetch puzzles', err);
-      }
-    };
-    fetchPuzzles();
-  }, []);
+    if (sudokuState.puzzles && Object.keys(sudokuState.puzzles).length > 0) {
+      const difficulty = (Object.keys(sudokuState.puzzles) as TDifficulty[])[0];
+      const filename = sudokuState.puzzles[difficulty][0];
+      sudokuState.loadPuzzle({ difficulty, filename });
+    }
+  }, [sudokuState.puzzles]);
 
   return <SudokuContext.Provider value={sudokuState}>{children}</SudokuContext.Provider>;
 }
@@ -61,5 +54,3 @@ const useSudokuContext = (): SudokuContextType => {
 };
 
 export { useSudokuContext, SudokuProvider };
-
-

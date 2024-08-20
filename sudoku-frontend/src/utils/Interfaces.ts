@@ -13,7 +13,21 @@ export interface TSolverAction extends TSolverSteps {
 export interface IPuzzleSelection {
   difficulty?: TDifficulty;
   filename: string;
+  board?: string[];
 }
+
+// export interface IPuzzleDifficulty {
+//   easy: string[];
+//   medium: string[];
+//   hard: string[];
+// }
+
+export interface ISudokuBoard {
+  board: number[][];
+}
+
+// export type TDifficulty = 'easy' | 'medium' | 'hard';
+// export type TDifficulty = keyof IPuzzleDifficulty;
 
 export interface IPuzzleDifficulty {
   easy: string[];
@@ -21,4 +35,4 @@ export interface IPuzzleDifficulty {
   hard: string[];
 }
 
-export type TDifficulty = 'easy' | 'medium' | 'hard';
+export type TDifficulty = keyof IPuzzleDifficulty;

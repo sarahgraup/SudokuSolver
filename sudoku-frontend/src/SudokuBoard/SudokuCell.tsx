@@ -1,18 +1,7 @@
 import React from 'react';
-import { Box } from '@mui/material';
-/** Component for SudokuCell
- *  Renders a cell for sudoku grid
- *
- * Props:
- *  - value: the value to be displayed in cell (number or empty)
- *  - isHighlighted: Iindicates whether cell should be highlighted (e.g. for conflicts, assignments
- *      backtracking, etc)
- *  - highlightColor: the color to be displayed for the highlighted cell
- *
- * State: none
- *
- * App -> SudokuBoard -> SudokuCell
- */
+import { Box, Typography } from '@mui/material';
+
+
 interface ISudokuCellProps {
   value: number | null;
   isHighlighted: boolean | null;
@@ -20,7 +9,6 @@ interface ISudokuCellProps {
 }
 
 function SudokuCell({ value, isHighlighted, highlightColor }: ISudokuCellProps) {
-  const cellStyle = isHighlighted ? { backgroundColor: highlightColor } : {};
   return (
     <Box
       sx={{
@@ -32,7 +20,7 @@ function SudokuCell({ value, isHighlighted, highlightColor }: ISudokuCellProps) 
         backgroundColor: isHighlighted ? highlightColor : 'transparent',
       }}
     >
-      {value !== 0 ? value : ''}
+      <Typography variant='h5'>{value !== 0 ? value : ''}</Typography>
     </Box>
   );
 }

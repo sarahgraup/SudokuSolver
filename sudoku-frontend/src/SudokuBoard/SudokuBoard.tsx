@@ -3,46 +3,25 @@ import { Grid } from '@mui/material';
 import { styled } from '@mui/material/styles';
 import { TSolverSteps } from 'utils/Interfaces';
 import SudokuCell from './SudokuCell';
-/** Component for SudokuBoard
- *  Renders a sudoku board
- *
- * Props:
- * - board: Current board state (2D array from App's state)
- * - highlightedCell: the current cell to be highlighted
- *
- * State: None
- *
- * App -> SudokuBoard
- */
+
 
 interface IBoardProps {
   board: [] | number[][];
   highlightedCell: TSolverSteps | null;
 }
-// const StyledTableCell = styled(TableCell)(
-//   ({ borderRight, borderBottom }) => ({
-//     border: "1px solid #ddd",
-//     width: "50px",
-//     height: "50px",
-//     padding: 0,
-//     borderRight: borderRight ? "2px solid black" : undefined,
-//     borderBottom: borderBottom ? "2px solid black" : undefined,
-//   })
-// );
 
 function SudokuBoard({ board, highlightedCell }: IBoardProps) {
   return (
     <Grid
       container
       spacing={0}
-      sx={{ width: { xs: '90vw', md: '40vw' }, margin: 0 }}
+      xs={12}
+      md={9}
     >
       {board.map((row, rowIndex) => row.map((cell, cellIndex) => (
         <Grid
           item
-          xs={12}
-          sm={4}
-          md={1.33}
+          xs={12 / 9}
           key={`${rowIndex}-${cellIndex}`}
           sx={{
             border: '1px solid #ddd',

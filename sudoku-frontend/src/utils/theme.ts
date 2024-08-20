@@ -50,16 +50,21 @@ const theme = createTheme({
       fontWeight: 200,
       letterSpacing: '0.1em',
       '@media (max-width: 600px)': {
-        fontSize: '2em',
-        lineHeight: '0.2em',
+        fontSize: '2rem',
       },
     },
     body1: {
       textAlign: 'center',
-      fontSize: '1em',
+      fontSize: '1.25vw',
       letterSpacing: '0.1em',
       lineHeight: '2em',
+      '@media (max-width: 1300px)': {
+        fontSize: '2vw',
+        padding: '0.5em',
+        lineHeight: '1.5em',
+      },
       '@media (max-width: 600px)': {
+        fontSize: '3vw',
         padding: '0.5em',
         lineHeight: '1.5em',
       },
@@ -97,11 +102,35 @@ const theme = createTheme({
         },
       },
     },
+    MuiFormLabel: {
+      // Add this block to override FormLabel styles
+      styleOverrides: {
+        root: {
+          fontSize: '1.5rem', // Change this value to your desired font size
+          '@media (max-width: 900px)': {
+            // Override for smaller screens
+            fontSize: '1em', // Change this to whatever size you want at this breakpoint
+          },
+        },
+      },
+    },
+    MuiSelect: {
+      // Add this block to override FormLabel styles
+      styleOverrides: {
+        root: {
+          fontSize: '1.5rem', // Change this value to your desired font size
+          // "@media (max-width: 900px)": {
+          //   // Override for smaller screens
+          //   fontSize: "1rem", // Change this to whatever size you want at this breakpoint
+          // },
+        },
+      },
+    },
     MuiGrid: {
       styleOverrides: {
         root: {
-          margin: 0, 
-          padding: 0, 
+          margin: 0,
+          padding: 0,
           justifyContent: 'center',
           paddingTop: '0',
           paddingLeft: '0',
@@ -109,9 +138,14 @@ const theme = createTheme({
         },
       },
     },
-    MuiButton: {
+    MuiButtonBase: {
       styleOverrides: {
         root: {
+          fontSize: '1.5rem', // Change this value to your desired font size
+          '@media (max-width: 900px)': {
+            // Override for smaller screens
+            fontSize: '1em', // Change this to whatever size you want at this breakpoint
+          },
         },
       },
     },
@@ -160,8 +194,7 @@ const theme = createTheme({
         justifyContent: 'center',
         alignItems: 'center',
       },
-      highlighted: {
-      },
+      highlighted: {},
       conflict: {
         backgroundColor: 'red',
       },

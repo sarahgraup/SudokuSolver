@@ -4,22 +4,8 @@ import {
   InputLabel,
 } from '@mui/material';
 import { IPuzzleSelection, IPuzzleDifficulty, TDifficulty } from 'utils/Interfaces';
-/** Component for Difficulty Selector
- *  Renders selection of difficulty levels and specified puzzles
- *
- * Props:
- * - onSelectPuzzle: function to update selected puzzle in apps state
- *      and load puzzle
- * - puzzle: object of puzzles
- *
- * State: None
- *
- * Function:
- *  - handlers to managbe dropdown selections
- *  - handleChange: load selected puzzle into app component based on change of user click
- *
- * App -> DifficultySelector
- */
+
+
 interface ISelectionProps {
   onSelectPuzzle: ({ difficulty, filename }: IPuzzleSelection) => void;
   puzzles: IPuzzleDifficulty;

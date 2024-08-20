@@ -1,19 +1,7 @@
 import React from 'react';
 import { Grid, Button } from '@mui/material';
 
-/** Component for Control Panel
- *  Renders buttons for controlling the solver
- *
- * Props:
- * - function to control solver (onStart, onStop, onPause, onResume)
- *
- * State: None
- *
- * Function:
- *  - handlers for button clicks that call provided control functions
- *
- * App -> Control Panel
- */
+
 interface IPanelProps {
   onStart: () => void;
   onPause: () => void;

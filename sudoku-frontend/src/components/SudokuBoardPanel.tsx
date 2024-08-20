@@ -8,8 +8,9 @@ import SolverStepsAnimation from '../utils/SolverStepsAnimation';
 
 function SudokuBoardPanel() {
   const {
-    board, highlightedCell, currentStep, solverSteps, controlSolver, handleStepChange,
+    board, highlightedCell, currentStep, fetchedSolverSteps, controlSolver, handleStepChange, 
   } = useSudokuContext();
+  console.log('soover step', fetchedSolverSteps);
 
   return (
     <Grid container spacing={4} justifyContent='center' width='100%'>
@@ -36,10 +37,9 @@ function SudokuBoardPanel() {
         direction='column'
         justifyContent='flex-start'
         alignItems='center'
-        flexGrow='1'
       >
         <SudokuBoard board={board} highlightedCell={highlightedCell} />
-        <SolverStepsAnimation currentStep={currentStep} solverSteps={solverSteps} />
+        <SolverStepsAnimation currentStep={currentStep} solverSteps={fetchedSolverSteps} />
       </Grid>
     </Grid>
   );

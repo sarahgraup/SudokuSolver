@@ -1,15 +1,12 @@
 import React from 'react';
-import { Grid, Typography} from '@mui/material';
+import { Grid, Typography } from '@mui/material';
 
 
 function Header() {
   return (
     <Grid
       item
-      sx={{
-        display: 'flex',
-        width: '100%',
-      }}
+      xs={12}
     >
       <Typography variant='h1' textAlign='center'>
         Sudoku Solver

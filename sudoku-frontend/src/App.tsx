@@ -6,58 +6,47 @@ import theme from 'utils/theme';
 import { SudokuProvider } from 'SudokuSolverContext';
 import InstructionsPanel from 'components/InstructionsPanel';
 import SudokuBoardPanel from 'components/SudokuBoardPanel';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import Header from 'components/Header';
 
-/** App for Sudoku Solver
- *
- * add which is the guess and then it will be revised
- * highlights all guesses that are going to be revised
- * State:
- *  - board: current Sudoky board (2d array)
- *  - Solverstatus: indicates if solver is  (running, paused, stopped).
- *  - currentStep: current step for stepping through the solution.
- *  - solverSteps: array of steps solver takes including assignments, conflicts and backtracking
- *  - puzzles: difficulty and puzzle list.
- *  - selectedPuzzle: specific puzzle selected for solving
- *  - highlightedCell: the current cell to be highlighted
- *
- * Props: none
- *
- */
 
+const queryClient = new QueryClient();
 function App() {
   return (
-    <SudokuProvider>
-      <ThemeProvider theme={theme}>
-        <CssBaseline />
-        <Grid
-          container
-          padding={2}
-          xs={12}
-          sx={{ flexGrow: 1 }}
-        >
-          <Header />
-          <Divider
-            orientation='horizontal'
-            variant='fullWidth'
-            sx={{
-              width: '100%',
-              borderColor: 'grey.500',
-              borderWidth: '1px',
-              margin: '1em',
-            }}
-          />
-          <Grid container marginLeft={8} marginRight={8} marginTop={2}>
-            <Grid item xs={12} md={7} sx={{ order: { xs: 2, md: 1 } }}>
-              <SudokuBoardPanel />
-            </Grid>
-            <Grid item xs={12} md={5} padding={4} sx={{ order: { xs: 1, md: 2 } }}>
-              <InstructionsPanel />
+    <QueryClientProvider client={queryClient}>
+      <SudokuProvider>
+        <ThemeProvider theme={theme}>
+          <CssBaseline />
+          <Grid container padding={2} xs={12}>
+            <Header />
+            <Divider
+              orientation='horizontal'
+              variant='fullWidth'
+              sx={{
+                width: '100%',
+                borderColor: 'grey.500',
+                borderWidth: '1px',
+                margin: '1em',
+              }}
+            />
+            <Grid container marginLeft={8} marginRight={8} sx={{ marginTop: { lg: 2, xs: 0 } }}>
+              <Grid item xs={12} sm={12} lg={7} sx={{ order: { xs: 2, sm: 2, lg: 1 } }}>
+                <SudokuBoardPanel />
+              </Grid>
+              <Grid
+                item
+                xs={12}
+                sm={12}
+                lg={5}
+                sx={{ order: { xs: 1, sm: 1, lg: 2 }, padding: { xs: 2, lg: 2 } }}
+              >
+                <InstructionsPanel />
+              </Grid>
             </Grid>
           </Grid>
-        </Grid>
-      </ThemeProvider>
-    </SudokuProvider>
+        </ThemeProvider>
+      </SudokuProvider>
+    </QueryClientProvider>
   );
 }
 

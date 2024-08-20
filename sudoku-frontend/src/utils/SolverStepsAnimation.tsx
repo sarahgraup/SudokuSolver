@@ -2,22 +2,7 @@ import React from 'react';
 import { Grid, Typography } from '@mui/material';
 import { TSolverAction } from './Interfaces';
 
-/** Solver Steps Animation
- *
- * Describes each step of sudoku solving process including assignments,
- * conflicts, reason for conflict, and backtracking
- *
- * Props:
- *  - currentStep: the current step to describe.
- *  - solverSteps: array of steps solver takes including assignments,
- *  conflicts, reason and backtracking
- *
- * State: none
- *
-   App -> SolverStepsAnimation
- *
-   logaction- "actiontype", detail- row, col, val, boardstate, reason
- */
+
 interface IAnimateProps {
   currentStep: number | null;
   solverSteps: TSolverAction[];
