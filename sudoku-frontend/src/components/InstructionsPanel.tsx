@@ -33,7 +33,7 @@ function InstructionsPanel() {
         ) : puzzles ? (
           <DifficultySelector onSelectPuzzle={loadPuzzle} puzzles={puzzles} />
 
-        ) : (<Typography>No puzzlews available</Typography>)}
+        ) : (<Typography>No puzzles available</Typography>)}
 
       </Grid>
     </Grid>
