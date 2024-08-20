@@ -75,7 +75,8 @@ const useSudokuSolver = () => {
   useEffect(() => {
     let timer: number | NodeJS.Timeout | undefined;
 
-    if (solverStatus === CSolverStatus.run && currentStep === null && fetchedSolverSteps && fetchedSolverSteps.length > 0) {
+    if (solverStatus === CSolverStatus.run && currentStep === null
+      && fetchedSolverSteps && fetchedSolverSteps.length > 0) {
       setCurrentStep(0);
       updateBoardAndStep(0);
     }
