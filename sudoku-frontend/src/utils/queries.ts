@@ -4,7 +4,6 @@ import {
   IPuzzleSelection,
   ISudokuBoard,
   TSolverAction,
-  TSolverSteps,
 } from './Interfaces';
 import { solve, puzzles } from './apiUrls';
 import http from './http';
@@ -28,6 +27,7 @@ export const actionsQueryKey = ({ difficulty, filename }: IPuzzleSelection) => [
 interface IActionsResponse {
   steps: TSolverAction[];
 }
+
 export function useGetActions({ difficulty, filename }: IPuzzleSelection) {
   return useQuery<IActionsResponse, Error, TSolverAction[]>({
     queryKey: actionsQueryKey({ difficulty, filename }),

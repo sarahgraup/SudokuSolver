@@ -1,4 +1,4 @@
-import { createTheme, Theme } from '@mui/material/styles';
+import { createTheme } from '@mui/material/styles';
 import { red } from '@mui/material/colors';
 
 
@@ -58,7 +58,7 @@ const theme = createTheme({
       fontSize: '1.25vw',
       letterSpacing: '0.1em',
       lineHeight: '2em',
-      '@media (max-width: 1300px)': {
+      '@media (max-width: 1200px)': {
         fontSize: '2vw',
         padding: '0.5em',
         lineHeight: '1.5em',

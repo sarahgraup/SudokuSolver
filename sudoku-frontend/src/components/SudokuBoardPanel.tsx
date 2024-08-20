@@ -8,9 +8,8 @@ import SolverStepsAnimation from '../utils/SolverStepsAnimation';
 
 function SudokuBoardPanel() {
   const {
-    board, highlightedCell, currentStep, fetchedSolverSteps, controlSolver, handleStepChange, 
+    board, highlightedCell, currentStep, fetchedSolverSteps, controlSolver, handleStepChange,
   } = useSudokuContext();
-  console.log('soover step', fetchedSolverSteps);
 
   return (
     <Grid container spacing={4} justifyContent='center' width='100%'>

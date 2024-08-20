@@ -5,7 +5,7 @@ import { TSolverAction } from './Interfaces';
 
 interface IAnimateProps {
   currentStep: number | null;
-  solverSteps: TSolverAction[];
+  solverSteps: TSolverAction[]| undefined;
 }
 
 function SolverStepsAnimation({ currentStep, solverSteps }: IAnimateProps) {
