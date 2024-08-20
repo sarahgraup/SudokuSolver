@@ -17,6 +17,7 @@
       "extends": ["airbnb", "react-app"],
       "rules": {
         "react/no-array-index-key": "off",
+        "no-nested-ternary": "off",
         "@typescript-eslint/no-shadow": "warn",
         "@typescript-eslint/no-explicit-any": "warn",
         "@typescript-eslint/no-unused-vars": "warn",
