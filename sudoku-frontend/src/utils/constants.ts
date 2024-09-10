@@ -1,7 +1,7 @@
 export const CSolverStatus = {
   stop: 'stopped',
   run: 'running',
-  resume: 'resumed',
+  resume: 'resume',
   pause: 'pause',
   start: 'start',
   forward: 'forward',
